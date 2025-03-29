@@ -2,11 +2,23 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import React from "react";
+//import Components from "./Components/Components.js";
+import * as Env from "./environments";
+import Parse from "parse/dist/parse.min.js";
 
+
+Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
+Parse.serverURL = Env.SERVER_URL;
+print("Hello");
+
+
+console.log(" Parse initialized");
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
+  return <h1>Hello, Parse!</h1>;
+  /*return (
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
@@ -29,7 +41,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  )*/
 }
 
-export default App
+export default App;

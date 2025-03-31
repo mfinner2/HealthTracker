@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import React, { useEffect } from "react";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 //import Components from "../Components/Components";
 //import * as Env from "./environments";
 import Parse from "parse/dist/parse.min.js";

@@ -7,6 +7,8 @@ import React, { useEffect } from "react";
 //import Components from "../Components/Components";
 //import * as Env from "./environments";
 import Parse from "parse/dist/parse.min.js";
+//import GraphParent from './Components/Graph/GraphParent';
+import Components from './Components/Components';
 
 const getAllUsers = (myPost) => {
   const User = Parse.Object.extend("_User");
@@ -45,7 +47,7 @@ function App() {
     //   setLesson(lesson);
     // });
   }, []);
-  return <h1>Hello, Parse!</h1>;
+  return <Components />;
   
   
 }

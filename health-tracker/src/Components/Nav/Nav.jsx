@@ -3,18 +3,21 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   //hold links to allow for moving between pages
   return (
-    <header>
+    <footer>
       <nav>
-        <ul>
+        <ul className="nav">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/"><img src="" alt="home" width="50" /></Link>
           </li>
           <li>
-          <Link to="/graphs">Graphs</Link>
+          <Link to="/graphs"><img src="" alt="graphs" width="50" /></Link>
+          </li>
+          <li>
+          <Link to="/profile"><img src="" alt="profile" width="50" /></Link>
           </li>
         </ul>
       </nav>
-    </header>
+    </footer>
   );
 };
 

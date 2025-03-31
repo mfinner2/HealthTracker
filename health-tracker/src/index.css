@@ -28,6 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: rgb(165,207,167);
+background: linear-gradient(180deg, rgba(165,207,167,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 h1 {
@@ -65,4 +67,34 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  /*make nav bar responsive to screen size*/
+  width: 90%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  /*background-color: rgb(0, 52, 102);*/
+  /*make nav bar stay on screen*/
+  position: absolute;
+  bottom: 0px;
+  
+}
+
+.nav li {
+  text-decoration: none;
+  display: block;
+  color: white;
+  padding: 0 0 2em 0;
+  /*add font to nav bar text*/
 }

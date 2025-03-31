@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import * as Icon from "react-bootstrap-icons";
+
 
 const Nav = () => {
   //hold links to allow for moving between pages
@@ -7,13 +9,13 @@ const Nav = () => {
       <nav>
         <ul className="nav">
           <li>
-            <Link to="/"><img src="" alt="home" width="50" /></Link>
+            <Link to="/"><Icon.House size={36}/></Link>
           </li>
           <li>
-          <Link to="/graphs"><img src="" alt="graphs" width="50" /></Link>
+          <Link to="/graphs"><Icon.Clipboard2Data size={36}/></Link>
           </li>
           <li>
-          <Link to="/profile"><img src="" alt="profile" width="50" /></Link>
+          <Link to="/profile"><Icon.PersonFill size={36} /></Link>
           </li>
         </ul>
       </nav>

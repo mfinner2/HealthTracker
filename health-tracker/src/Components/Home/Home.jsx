@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useState } from 'react';
 
 // import component cards
 import Calendar from "./materials/Calendar.jsx";
@@ -10,6 +11,16 @@ import ActionButtons from './materials/Actions.jsx';
 
 
 export default function DataPage() {
+	const [sleepData, setSleepData] = useState(null);
+	const [foodData, setFoodData] = useState(null);
+
+	const handleSaveSleep = (data) => {
+		setSleepData(data);
+	};
+	const handleSaveFood = (data) => {
+		setFoodData(data);
+	}
+
 	return (
 		<Container fluid="xs">
 			<Row>
@@ -19,8 +30,8 @@ export default function DataPage() {
 				<Col><h2>Actions Today</h2></Col>
 			</Row>
 			<Row>
-				<Col><SleepCard /></Col>
-				<Col><FoodCard /></Col>
+				<Col><SleepCard sleepData={sleepData} onSave={handleSaveSleep}/></Col>
+				<Col><FoodCard foodData={foodData} onSave={handleSaveFood}/></Col>
 			</Row>
       <ActionButtons />
 		</Container>

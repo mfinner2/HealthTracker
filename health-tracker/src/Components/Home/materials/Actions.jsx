@@ -12,7 +12,7 @@ const ActionButtons = () => {
 		<Icon.EmojiSmileFill className="me-4"/> Mood
       </Button>
       <Button variant="outline-secondary" className="d-flex align-items-center">
-		<Icon.Tablet className="me-4"/> Add a Stymptom
+		<Icon.Tablet className="me-4"/> Add a Symptom
       </Button>
     </Container>
   );

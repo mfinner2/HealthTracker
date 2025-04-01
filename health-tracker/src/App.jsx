@@ -6,6 +6,9 @@ import React, { useEffect } from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// theme found at https://bootswatch.com/minty/ 
+import './theme/BootswatchBootstrapTheme.min.css';
+
 //import Components from "../Components/Components";
 //import * as Env from "./environments";
 import Parse from "parse/dist/parse.min.js";

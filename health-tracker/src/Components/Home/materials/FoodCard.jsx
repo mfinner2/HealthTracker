@@ -25,17 +25,20 @@ export default function FoodCard({ foodData, onSave }){
       </Row>
       <Row>    
         <Col>Breakfast:</Col>
-        <Col><Badge bg="primary">recorded</Badge></Col>
+        <Col><Badge bg={foodData?.breakfast ? 'primary' : 'secondary'}>{foodData?.breakfast ? foodData?.breakfast : 'not recorded'}</Badge></Col>
       </Row>
       <Row>
         <Col>Lunch:</Col>
-        <Col><Badge bg="primary">recorded</Badge></Col>      </Row>
+        <Col><Badge bg={foodData?.lunch ? 'primary' : 'secondary'}>{foodData?.lunch ? foodData?.lunch : 'not recorded'}</Badge></Col>
+      </Row>
       <Row>
         <Col>Dinner:</Col>
-        <Col><Badge bg="secondary">not recorded</Badge></Col>      </Row>
+        <Col><Badge bg={foodData?.dinner ? 'primary' : 'secondary'}>{foodData?.dinner ? foodData?.dinner : 'not recorded'}</Badge></Col>      
+      </Row>
       <Row>
         <Col>Snacks:</Col>
-        <Col><Badge bg="secondary">not recorded</Badge></Col>        </Row>
+        <Col><Badge bg={foodData?.snacks ? 'primary' : 'secondary'}>{foodData?.snacks ? foodData?.snacks : 'not recorded'}</Badge></Col>        
+      </Row>
     </Container>
     </Card>
 

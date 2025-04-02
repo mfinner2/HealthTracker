@@ -1,19 +1,65 @@
-import Badge from 'react-bootstrap/Badge';
-import Card from 'react-bootstrap/Card';
+
 import CardBody from 'react-bootstrap/esm/CardBody';
 import * as Icon from 'react-bootstrap-icons';
+import { Row, Col, Card, Badge, Container, Button, Modal } from 'react-bootstrap';
+import SleepForm from './SleepForm';
+import { useState } from 'react';
 
-export default function SleepCard(){
+export default function SleepCard({ sleepData, onSave }){
+  const [showForm, setShowForm] = useState(false);
+  
   return (
-    <Card className= "p-1 shadow-sm rounded"> 
-    <div className="bg-transparent shadow-md rounded-lg p-4">
-      <Card.Title>Sleep <Icon.MoonFill /></Card.Title>
-      <Card.Body>
-        <p>In Bed <Badge bg="dark">10:20 pm</Badge></p>
-        <p>Awake <Badge bg="secondary">7:30 am</Badge></p>
-        <p>Total Time: <Badge bg="success">8 hr 30 mins</Badge></p>
-      </Card.Body>
-    </div>
+    <>
+    <Card className= "p-0 shadow-sm rounded"> 
+    <Container className="shadow-md rounded-lg p-3">
+      {sleepData ? (
+        <>
+        <Row >
+        <Col xs={5}>
+          <Card.Title>Sleep </Card.Title>
+        </Col>
+        <Col xs={{ span: 1, offset: 5 }}>
+          <Icon.MoonFill size={24}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col> In Bed </Col>
+        <Col><Badge bg="dark">{sleepData.bedtime}</Badge></Col>
+      </Row>
+      <Row>
+          <Col>Awake </Col>
+          <Col><Badge bg="secondary">{sleepData.wakeTime}</Badge></Col>
+      </Row>
+      <Row>
+          <Col>Total Time </Col>
+          <Col><Badge bg="primary">{sleepData.totalSleep}</Badge></Col>
+      </Row>
+    </>
+    ) : (
+      <>
+      <Row>
+        <Col>
+          <Card.Title>Log Sleep</Card.Title>
+        </Col>
+      </Row>
+      <Row className='justify-content-center'>
+        <Button variant="primary" className="mt-2" onClick={() => setShowForm(true)}>
+          <Icon.Plus size={20} />
+        </Button>
+      </Row>
+      </>
+
+    )}
+    </Container>
     </Card>
+    <Modal show={showForm} onHide={() => setShowForm(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Log Sleep</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <SleepForm onSave={(data) => { onSave(data); setShowForm(false); }} />
+      </Modal.Body>
+    </Modal>
+    </>
   );
 }

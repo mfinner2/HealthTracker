@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MainList from "./MainList";
 import { createLesson, getAllLessons } from "../../Common/Services/LearnService";
+import chat from "../openai/Interface";
 
 /* MAIN MODULE WITH STATEFUL PARENT AND STATELESS CHILD */
 const MainModule = () => {
-  const [lessons, setLessons] = useState([]);
+  console.log("Hi");
+  const [Lessons, setLessons] = useState([]);
   useEffect(()=> {
     if (Lessons.collection.length){
       setLessons(Lessons.collection);
@@ -14,6 +16,12 @@ const MainModule = () => {
         setLessons(lessons);
       });
     }
+
+    
+    // Call OpenAI API
+  chat().then((response) => {
+    console.log("OpenAI says:", response);
+  });
   }, []);
   
   return (

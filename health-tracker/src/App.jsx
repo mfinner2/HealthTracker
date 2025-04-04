@@ -3,9 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import React, { useEffect } from "react";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// theme found at https://bootswatch.com/minty/ 
+import './theme/BootswatchBootstrapTheme.min.css';
+
 //import Components from "../Components/Components";
 //import * as Env from "./environments";
 import Parse from "parse/dist/parse.min.js";
+//import GraphParent from './Components/Graph/GraphParent';
+import Components from './Components/Components';
 
 
 
@@ -59,9 +67,15 @@ function App() {
   /*useEffect(() => {
     getAllUsers().then((users) => {
       console.log(users);
-      setLessons(users);
+      setUsers(users);
     });
 
+    // getById("OXsgE8Mhjc").then((lesson) => {
+    //   console.log(lesson);
+    //   setLesson(lesson);
+    // });
+  }, []);
+  return <Components />;
     
   }, []);*/
   // Handle button click

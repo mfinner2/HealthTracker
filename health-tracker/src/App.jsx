@@ -88,19 +88,7 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Hello, Parse!</h1>
-      <button onClick={handleFetchUsers}>Get All Users</button>
-
-      {/* Display the users if available */}
-      {users.length > 0 && (
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.get("username")}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Components/>
   );
   
   

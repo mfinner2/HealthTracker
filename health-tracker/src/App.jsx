@@ -14,35 +14,48 @@ import './theme/BootswatchBootstrapTheme.min.css';
 //import GraphParent from './Components/Graph/GraphParent';
 import Parse from '../Common/Services/parseConfig';
 import Components from './Components/Components';
+import UserAuth from './Components/UserAuth';
+import { getCurrentUser } from '../Common/Services/authService';
 
-const getAllUsers = (myPost) => {
-  const User = Parse.Object.extend("_User");
-  const query = new Parse.Query(User);
-  query.equalTo("post", myPost);
-  return query.find().then((results) => {
-    // returns array of Lesson objects
-    return results;
-  });
-};
+// const getAllUsers = (myPost) => {
+//   const User = Parse.Object.extend("_User");
+//   const query = new Parse.Query(User);
+//   query.equalTo("post", myPost);
+//   return query.find().then((results) => {
+//     // returns array of Lesson objects
+//     return results;
+//   });
+// };
 
 function App() {
-  //const [count, setCount] = useState(0)
-  const [users, setLessons] = useState([]);
-  console.log("text printed");
-  //return <Components />;
+  const [user, setUser] = useState(null);
+
 
   useEffect(() => {
-    getAllUsers().then((users) => {
-      console.log(users);
-      setLessons(users);
-    });
-
-    // getById("OXsgE8Mhjc").then((lesson) => {
-    //   console.log(lesson);
-    //   setLesson(lesson);
-    // });
+    const current = getCurrentUser();
+    if (current) {
+      setUser(current);
+    }
   }, []);
-  return <Components />;
+
+  const handleAuthSuccess = (loggedInUser) => {
+    setUser(loggedInUser);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  }
+
+
+  return (
+    <div className='container mt-4'>
+      {user ? (
+        <Components user={user} onLogout={handleLogout}/>
+      ) : (
+        <UserAuth onAuthSuccess={handleAuthSuccess} />
+      )}
+    </div>
+  );
   
   
 }

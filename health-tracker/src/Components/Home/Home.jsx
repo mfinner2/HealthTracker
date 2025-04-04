@@ -2,8 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from 'react';
-import { saveSleepEntry, getLatestSleepEntry } from './materials/sleepService.jsx';
-import { saveFoodEntry, getLatestFoodEntry } from './materials/foodService.jsx';
+import { saveSleepEntry, getLatestSleepEntry } from '../../../Common/Services/sleepService.jsx';
+import { saveFoodEntry, getLatestFoodEntry } from '../../../Common/Services/foodService.jsx';
 
 // import component cards
 import Calendar from "./materials/Calendar.jsx";

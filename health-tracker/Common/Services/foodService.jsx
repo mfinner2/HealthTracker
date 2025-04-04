@@ -1,4 +1,4 @@
-import Parse from 'parse/dist/parse.min.js';
+import Parse from './parseConfig';
 
 // const Food = Parse.Object.extend("Food");
 
@@ -10,10 +10,14 @@ export async function saveFoodEntry(data) {
 	const end = new Date();
 	end.setHours(23,59,59,999); 
 
+	const currentUser = Parse.User.current();
 
 	const query = new Parse.Query("Food");
 	query.greaterThanOrEqualTo("date", start);
 	query.lessThanOrEqualTo("date", end);
+	if(currentUser) {
+		query.equalTo("user", currentUser);
+	}
 
 	let food;
 
@@ -28,6 +32,9 @@ export async function saveFoodEntry(data) {
 			const Food = Parse.Object.extend("Food");
 			food = new Food();
 			food.set("date", start);
+			if (currentUser) {
+				food.set("user", currentUser);
+			}
 			Object.keys(data).forEach((key) => {
 				food.set(key, data[key]);
 			});
@@ -49,9 +56,14 @@ export async function getLatestFoodEntry() {
 	const end = new Date();
 	end.setHours(23,59,59,999); 
 
+	const currentUser = Parse.User.current();
+
 	const query = new Parse.Query("Food");
 	query.greaterThanOrEqualTo("date", start);
 	query.lessThanOrEqualTo("date", end);
+	if (currentUser) {
+		query.equalTo("user", currentUser);
+	}
 
 	try {
 		const result = await query.first();

@@ -5,17 +5,18 @@ import Profile from "./Profile/Profile.jsx"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
-const Components = () => {
+const Components = ({ user, onLogout }) => {
+  console.log("Logged-in user:", user);
     //set up routing
    return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/graphs" element={<GraphParent />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile onLogout={onLogout} />} />
       </Routes>
       <Nav />
-      <footer class="buffer" />
+      <footer className="buffer" />
     </Router>
    )
 }

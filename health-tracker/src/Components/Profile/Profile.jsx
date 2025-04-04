@@ -1,9 +1,15 @@
-import { Row, Container, Col, Card, CardBody, CardText } from "react-bootstrap";
+import { Row, Container, Col, Card, CardBody, CardText, Button } from "react-bootstrap";
+import { logOutUser } from "../../../Common/Services/authService";
 import * as Icon from "react-bootstrap-icons";
 
-const Profile = () => {
+const Profile = ({ onLogout }) => {
   const user = {name: "Test User", email: "example@email.com", dob: "01-01-1970", 
     height:"5 ft 10 in", weight:"180 lbs"};
+
+    const handleLogout = async () => {
+      await logOutUser();
+      onLogout?.();
+    };
   
     return (
       <Container className="py-5 h-100">
@@ -42,6 +48,9 @@ const Profile = () => {
                         <CardText className="text-muted">{user.weight}</CardText>
                       </Col>
                     </Row>
+                    <div className="d-flex justify-content-end mt-4">
+                      <Button variant="outline-danger" onClick={handleLogout}>Log Out</Button>
+                    </div>
                   </CardBody>
                 </Col>
               </Row>

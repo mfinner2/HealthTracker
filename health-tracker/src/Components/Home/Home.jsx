@@ -1,7 +1,9 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { saveSleepEntry, getLatestSleepEntry } from './materials/sleepService.jsx';
+import { saveFoodEntry, getLatestFoodEntry } from './materials/foodService.jsx';
 
 // import component cards
 import Calendar from "./materials/Calendar.jsx";
@@ -14,12 +16,30 @@ export default function DataPage() {
 	const [sleepData, setSleepData] = useState(null);
 	const [foodData, setFoodData] = useState(null);
 
-	const handleSaveSleep = (data) => {
-		setSleepData(data);
+	useEffect(() => {
+		const fetchData = async () => {
+			const latestSleep = await getLatestSleepEntry();
+			const latestFood = await getLatestFoodEntry();
+			setSleepData(latestSleep);
+			setFoodData(latestFood);
+		};
+		fetchData();
+	}, []);
+	
+
+
+	const handleSaveSleep = async (data) => {
+		await saveSleepEntry(data);
+		const latest = await getLatestSleepEntry();
+		setSleepData(latest);
 	};
-	const handleSaveFood = (data) => {
-		setFoodData(data);
-	}
+	
+
+	const handleSaveFood = async (data) => {
+		await saveFoodEntry(data);
+		const latest = await getLatestFoodEntry();
+		setFoodData(latest);
+	};
 
 	return (
 		<Container fluid="xs">
@@ -36,4 +56,4 @@ export default function DataPage() {
       <ActionButtons />
 		</Container>
 	);
-}
+};

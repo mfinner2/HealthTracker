@@ -11,8 +11,8 @@ import './theme/BootswatchBootstrapTheme.min.css';
 
 //import Components from "../Components/Components";
 //import * as Env from "./environments";
-import Parse from "parse/dist/parse.min.js";
 //import GraphParent from './Components/Graph/GraphParent';
+import Parse from '../Common/Services/parseConfig';
 import Components from './Components/Components';
 
 const getAllUsers = (myPost) => {
@@ -24,17 +24,7 @@ const getAllUsers = (myPost) => {
     return results;
   });
 };
-const Env  = {
-  APPLICATION_ID: "Ga7GJjsK6m7JXDd1kWiM52Uy1K0Y6otOvWpcoHgm",
-  JAVASCRIPT_KEY: "mHUDGRFFaaXDN7za30sURxJGhAztE295il1gFTxz",
-  SERVER_URL: "https://parseapi.back4app.com/"
-}
 
-Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
-Parse.serverURL = Env.SERVER_URL;
-
-
-console.log(" Parse initialized");
 function App() {
   //const [count, setCount] = useState(0)
   const [users, setLessons] = useState([]);

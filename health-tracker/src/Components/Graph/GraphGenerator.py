@@ -15,7 +15,7 @@ def GetData(target):
     response = requests.get(url, headers=HEADERS)
     if response.status_code == 200:
         data = response.json()
-        print(data)
+        #print(data)
     else:
         print(f"Error: {response.status_code}")
         return -1
@@ -38,10 +38,31 @@ for target in keywords:
     if target == "Food":
         foods = []
         for val in data['results']:
-            print(val)
+            #print(val)
             categories = ['breakfast', 'lunch', 'dinner', 'snacks']
             for i in categories:
                 if val.get(i, -1) != -1 and val.get(i, -1) != '':
                    foods.append(val[i]) 
             
         print(foods)
+    if target == "mood":
+        moods = []
+        for val in data['results']:
+            #print(val)
+            if val['category'] == 'mood':
+                moods.append(float(val['value']))
+        print(moods)
+    if target == "symptom":
+        symptoms = []
+        for val in data['results']:
+            #print(val)
+            if val['category'] == 'symptom':
+                symptoms.append(val['value'])
+        print(symptoms)
+    if target == "activity":
+        activitys = []
+        for val in data['results']:
+            #print(val)
+            if val['category'] == 'activity':
+                activitys.append(val['value'])
+        print(activitys)

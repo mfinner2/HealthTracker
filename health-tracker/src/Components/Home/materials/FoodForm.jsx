@@ -9,13 +9,18 @@ export default function FoodForm({ onSave }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const foodData = {
+		const rawData = {
 			breakfast, 
 			lunch,
 			dinner,
 			snacks
 		};
-		onSave(foodData);
+
+		const filteredData = Object.fromEntries(
+			Object.entries(rawData).filter(([_, value]) => value.trim() !== '')
+		);
+
+		onSave(filteredData);
 	};
 
 	return (

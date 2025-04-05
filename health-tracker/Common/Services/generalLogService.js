@@ -8,10 +8,10 @@ export async function saveGeneralEntry(data, date){
 	log.set("category", data.category);
 	log.set("value", data.value);
 
-	if (date.severity) {
+	if (data.severity) {
 		log.set("severity", data.severity);
 	}	
-	if (date.notes) {
+	if (data.notes) {
 		log.set("notes", data.notes);
 	}
 

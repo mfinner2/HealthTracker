@@ -1,7 +1,7 @@
 import GraphChild from "./GraphChild";
 
 const GraphParent = () => {
-    const keywords = ["Sleep", "Food"]; //send to AI to generate graphs (can change/be added to as necessary)
+    const keywords = ["Sleep", "Food", "mood", "symptom", "activity"]; //send to AI to generate graphs (can change/be added to as necessary)
   return (
     <div>
         <h1>Graphs</h1>

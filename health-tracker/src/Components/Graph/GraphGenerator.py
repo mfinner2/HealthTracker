@@ -1,4 +1,5 @@
 import requests
+import matplotlib.pyplot as plt
 
 
 def GetData(target):
@@ -17,3 +18,30 @@ def GetData(target):
         print(data)
     else:
         print(f"Error: {response.status_code}")
+        return -1
+    
+    return data
+
+keywords = ["Sleep", "Food", "mood", "symptom", "activity"]
+
+for target in keywords:
+    if target not in ["Sleep", "Food"]:
+        data = GetData("GeneralLog")
+    else:
+        data = GetData(target)
+    if target == "Sleep":
+        sleepTimes = []
+        for val in data['results']:
+            segments = val['totalSleep'].split()
+            sleepTimes.append(float(segments[0]) + float(segments[2])/60)
+        print(sleepTimes)
+    if target == "Food":
+        foods = []
+        for val in data['results']:
+            print(val)
+            categories = ['breakfast', 'lunch', 'dinner', 'snacks']
+            for i in categories:
+                if val.get(i, -1) != -1 and val.get(i, -1) != '':
+                   foods.append(val[i]) 
+            
+        print(foods)

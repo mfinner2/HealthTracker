@@ -66,3 +66,5 @@ for target in keywords:
             if val['category'] == 'activity':
                 activitys.append(val['value'])
         print(activitys)
+    
+    #send info to AI and write to some Graph database in back4app

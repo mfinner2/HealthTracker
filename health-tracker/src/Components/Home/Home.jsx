@@ -10,6 +10,7 @@ import Calendar from "./materials/Calendar.jsx";
 import SleepCard from "./materials/SleepCard.jsx";
 import FoodCard from "./materials/FoodCard.jsx";
 import ActionButtons from './materials/Actions.jsx';
+import GeneralTrackerCard from './materials/GeneralTrackerCard.jsx';
 
 
 export default function DataPage() {
@@ -54,7 +55,7 @@ export default function DataPage() {
 				<Col><SleepCard sleepData={sleepData} onSave={handleSaveSleep} selectedDate={selectedDate} /></Col>
 				<Col><FoodCard foodData={foodData} onSave={handleSaveFood} selectedDate={selectedDate} /></Col>
 			</Row>
-      <ActionButtons />
+      		<GeneralTrackerCard selectedDate={selectedDate} />
 		</Container>
 	);
 };

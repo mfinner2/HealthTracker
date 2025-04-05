@@ -5,7 +5,7 @@ import { Row, Col, Card, Badge, Container, Button, Modal } from 'react-bootstrap
 import SleepForm from './SleepForm';
 import { useState } from 'react';
 
-export default function SleepCard({ sleepData, onSave }){
+export default function SleepCard({ sleepData, onSave , selectedDate}){
   const [showForm, setShowForm] = useState(false);
   
   return (
@@ -18,9 +18,17 @@ export default function SleepCard({ sleepData, onSave }){
         <Col xs={5}>
           <Card.Title>Sleep </Card.Title>
         </Col>
-        <Col xs={{ span: 1, offset: 5 }}>
-          <Icon.MoonFill size={24}/>
-        </Col>
+     <Col xs={{ span: 1, offset: 5 }} className="text-end">
+        <Button
+          variant="outline-secondary"
+          size="sm"
+          onClick={() => setShowForm(true)}
+          title="Edit Sleep Entry"
+          style={{ border: 'none', background: 'none', padding: 0 }}
+        >
+          <Icon.PencilSquare size={20} />
+        </Button>
+      </Col>
       </Row>
       <Row>
         <Col> In Bed </Col>
@@ -57,7 +65,7 @@ export default function SleepCard({ sleepData, onSave }){
         <Modal.Title>Log Sleep</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <SleepForm onSave={(data) => { onSave(data); setShowForm(false); }} />
+        <SleepForm onSave={(data) => { onSave(data); setShowForm(false); }} selectedDate={selectedDate} />
       </Modal.Body>
     </Modal>
     </>

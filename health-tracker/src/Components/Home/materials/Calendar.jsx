@@ -1,22 +1,45 @@
 // calendar selection for data page
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const Calendar = () => {
-	const [selectedDate, setSelectedDate] = useState(4);
+function getStartOfWeek(date) {
+	const day = date.getDay(); // 0(su) - 6(sa)
+	const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+	return new Date(date.setDate(diff));
+}
 
-	// get from database
-	const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-	const dates = [1, 2, 3, 4, 5, 6, 7];
+
+const Calendar = ({ value, onChange }) => {
+	const [weekDates, setWeekDates] = useState([]);
+
+	useEffect(() => {
+		const startOfWeek = getStartOfWeek(new Date());
+		const days = [];
+
+		for (let i = 0; i < 7; i++) {
+			const day = new Date(startOfWeek);
+			day.setDate(startOfWeek.getDate() + i);
+			days.push(day);
+		}
+		setWeekDates(days);
+	}, []);
+
+	const isSameDate = (d1, d2) =>
+		d1.getFullYear() === d2.getFullYear() &&
+		d1.getMonth() === d2.getMonth() &&
+		d1.getDate() === d2.getDate();
+	
+
+	const daynames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 	return (
 		<Container className="text-center py-2">
 			<Row>
-				{days.map((day, index) => (
-					<Col key={index} onClick={() => setSelectedDate(dates[index])}>
-						<div className={`p-0 rounded ${selectedDate === dates[index] ? "bg-secondary text-white" : ""}`}>
-							<div>{day}</div>
-							<div>{dates[index]}</div>
+				{weekDates.map((date, index) => (
+					<Col key={index} onClick={() => onChange(date)}>
+						<div className={`p-2 rounded ${isSameDate(value, date) ? "bg-secondary text-white" : ""}`} style={{ cursor: "pointer"}}>
+							<div>{daynames[index]}</div>
+							<div>{date.getDate()}</div>
 						</div>
 					</Col>
 				))}

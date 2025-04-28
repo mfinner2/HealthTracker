@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-export default function SleepForm({ onSave }) {
+export default function SleepForm({ onSave, selectedDate, defaultData = {} }) {
+
 	const [bedtime, setBedtime] = useState('');
 	const [wakeTime, setWakeTime] = useState('');
 
@@ -16,10 +17,15 @@ export default function SleepForm({ onSave }) {
 	};
 
 	const calculateSleep = (bed, wake) => {
-		if (!bed || !wake) return '';
-		const bedTime = new Date(`2023-01-01T${bed}`);
-		const wakeTime = new Date(`2023-01-02T${wake}`);
-		const diff = (wakeTime - bedTime) / (1000 * 60 * 60);
+		if (!bed || !wake || !selectedDate) return '';
+		const bedtimeDate = new Date(`${selectedDate.toISOString().split('T')[0]}T${bed}`);
+		const wakeDate = new Date(`${selectedDate.toISOString().split('T')[0]}T${wake}`);
+
+		if (wakeDate <= bedtimeDate){
+			wakeDate.setDate(wakeDate.getDate() + 1);
+		}
+
+		const diff = (wakeDate - bedtimeDate) / (1000 * 60 * 60);
 		return `${Math.floor(diff)} hr ${Math.round((diff % 1) * 60)} min`;
 	};
 

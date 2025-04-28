@@ -2,12 +2,12 @@ import Parse from './parseConfig';
 
 // const Food = Parse.Object.extend("Food");
 
-export async function saveFoodEntry(data) {
+export async function saveFoodEntry(data, date) {
 
-	const start = new Date();
+	const start = new Date(date);
 	start.setHours(0,0,0,0); // midnight
 
-	const end = new Date();
+	const end = new Date(date);
 	end.setHours(23,59,59,999); 
 
 	const currentUser = Parse.User.current();
@@ -49,11 +49,11 @@ export async function saveFoodEntry(data) {
 	}
 }
 
-export async function getLatestFoodEntry() {
-	const start = new Date();
+export async function getFoodEntryByDate(date) {
+	const start = new Date(date);
 	start.setHours(0,0,0,0);
 
-	const end = new Date();
+	const end = new Date(date);
 	end.setHours(23,59,59,999); 
 
 	const currentUser = Parse.User.current();

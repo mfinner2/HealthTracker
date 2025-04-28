@@ -2,7 +2,7 @@ import Parse from './parseConfig';
 
 const Sleep = Parse.Object.extend("Sleep");
 
-export async function saveSleepEntry(data) {
+export async function saveSleepEntry(data, date) {
 	const sleep = new Sleep();
 
 	sleep.set("bedtime", data.bedtime);
@@ -12,6 +12,13 @@ export async function saveSleepEntry(data) {
 	const currentUser = Parse.User.current();
 	if (currentUser) {
 		sleep.set("user", currentUser);
+	}
+
+	if(date){
+		// strip time
+		const midnight = new Date(date);
+		midnight.setHours(0, 0, 0, 0);
+		sleep.set("date", midnight);
 	}
 
 	try {
@@ -24,10 +31,16 @@ export async function saveSleepEntry(data) {
 	}
 }
 
-export async function getLatestSleepEntry() {
+export async function getSleepEntryByDate(date) {
+	const start = new Date(date);
+	start.setHours(0, 0, 0, 0);
+
+	const end = new Date(date);
+	end.setHours(23, 59, 59, 999);
+
 	const query = new Parse.Query(Sleep);
-	query.descending("createdAt");
-	query.limit(1);
+	query.greaterThanOrEqualTo("date", start);
+	query.lessThanOrEqualTo("date", end);
 
 	const currentUser = Parse.User.current();
 	console.log("saving for user:", currentUser?.id)
@@ -40,6 +53,7 @@ export async function getLatestSleepEntry() {
 		if (results.length > 0){
 			const sleep = results[0];
 			return {
+				id: sleep.id,
 				bedtime: sleep.get("bedtime"),
 				wakeTime: sleep.get("wakeTime"),
 				totalSleep: sleep.get("totalSleep"),

@@ -86,25 +86,19 @@ const MainList = () => {
       <div>
         {lessons.length > 0 && (
           <ul>
-            {lessons.map((lesson) => (
-              <div>
-                <span>
-                  {/* Using getter for lesson Object to display name */}
-                  <li key={lesson.id}>{lesson.get("name")}</li>{" "}
-                  {/* Button with inline click handler to obtain 
-                  instance of lesson for remove state variable*/}
-                  <button
-                    onClick={(e) => {
-                      // Set remove variable and trigger re-render
-                      setRemove(lesson.id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </span>
-              </div>
-            ))}
-          </ul>
+          {lessons.map((lesson) => (
+            <li key={lesson.id}>
+              {lesson.get("name")}
+              <button
+                onClick={() => setRemove(lesson.id)}
+                className="delete-button" // use className here!
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+        
         )}
       </div>
       <div>

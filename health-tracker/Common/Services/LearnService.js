@@ -43,3 +43,4 @@ export const removeLesson = (id) => {
     lesson.destroy();
   });
 };
+

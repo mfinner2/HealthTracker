@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.2",
+    "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.3",
+    "openai": "^4.91.1",
     "parse": "^6.1.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-bootstrap-icons": "^1.11.5",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0"
+    "react-router-dom": "^7.3.0",
+    "recharts": "^2.15.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
